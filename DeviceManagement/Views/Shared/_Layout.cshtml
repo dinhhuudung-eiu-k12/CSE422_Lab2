@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Device Management System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-white d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-cpu-fill text-primary me-2 fs-4"></i>
+                    <span>DeviceMaster</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active text-white fw-semibold" : "")" 
+                               asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Devices" ? "active text-white fw-semibold" : "")" 
+                               asp-controller="Devices" asp-action="Index">
+                                <i class="bi bi-laptop me-1"></i> Devices
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "DeviceCategories" ? "active text-white fw-semibold" : "")" 
+                               asp-controller="DeviceCategories" asp-action="Index">
+                                <i class="bi bi-tags me-1"></i> Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Employees" ? "active text-white fw-semibold" : "")" 
+                               asp-controller="Employees" asp-action="Index">
+                                <i class="bi bi-people me-1"></i> Employees
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center text-white-50 small">
+                        <span class="badge bg-secondary me-2">CSE 422</span>
+                        <span>Practice Assignment 2</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container py-4 flex-grow-1">
+        <partial name="_Alerts" />
+        @RenderBody()
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-white border-top text-muted">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <span class="small">&copy; @DateTime.Now.Year - Device Management System (ASP.NET Core MVC &amp; EF Core)</span>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex small">
+                <li class="ms-3"><a class="text-muted text-decoration-none" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="ms-3"><a class="text-muted text-decoration-none" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
